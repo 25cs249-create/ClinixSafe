@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-07-10"
+  },
+  "entries": [
+    {
+      "id": "KB-001",
+      "drugA": "Warfarin",
+      "drugB": "Ibuprofen",
+      "severity": "HIGH",
+      "mechanism": "Increased bleeding risk",
+      "recommendation": "Avoid concurrent use.",
+      "evidenceStrength": "HIGH",
+      "citations": [
+        "FDA Label"
+      ],
+      "tags": [
+        "drug_interaction"
+      ]
+    }
+  ]
+}

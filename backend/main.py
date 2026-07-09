@@ -1,8 +1,16 @@
 from fastapi import FastAPI
 
+from backend.settings import get_settings
+
+settings = get_settings()
+
+from backend.services.knowledge_base import KnowledgeBaseService
+
+kb = KnowledgeBaseService()
+
 app = FastAPI(
     title="ClinixSafe API",
-    version="1.0.0"
+    version=settings.engine_version
 )
 
 
@@ -15,6 +23,11 @@ def root():
 
 @app.get("/health")
 def health():
+
     return {
-        "status": "operational"
+        "status": "operational",
+        "engine_version": settings.engine_version,
+        "knowledge_base_version": kb.version,
+        "knowledge_entries": kb.entry_count,
+        "demo_mode": settings.demo_mode
     }
