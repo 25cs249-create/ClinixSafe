@@ -12,6 +12,8 @@ from backend.services.rule_engine import RuleEngine
 
 engine = RuleEngine()
 
+from backend.api.models import AnalyzeRequest
+
 app = FastAPI(
     title="ClinixSafe API",
     version=settings.engine_version
@@ -42,6 +44,16 @@ def demo_high_risk():
     report = engine.analyze(
         ["Warfarin"],
         "Ibuprofen"
+    )
+
+    return report
+
+@app.post("/api/v1/analyze")
+def analyze(request: AnalyzeRequest):
+
+    report = engine.analyze(
+        request.currentMedications,
+        request.newMedication,
     )
 
     return report
