@@ -9,15 +9,33 @@
       "drugA": "Warfarin",
       "drugB": "Ibuprofen",
       "severity": "HIGH",
-      "mechanism": "Increased bleeding risk",
+      "mechanism": "Concurrent use increases bleeding risk.",
       "recommendation": "Avoid concurrent use.",
       "evidenceStrength": "HIGH",
-      "citations": [
-        "FDA Label"
-      ],
-      "tags": [
-        "drug_interaction"
-      ]
+      "citations": ["FDA Label"],
+      "tags": ["drug_interaction"]
+    },
+    {
+      "id": "KB-002",
+      "drugA": "Amoxicillin",
+      "drugB": "Penicillin Allergy",
+      "severity": "CONTRAINDICATED",
+      "mechanism": "Cross-reactivity with penicillin allergy.",
+      "recommendation": "Do not prescribe.",
+      "evidenceStrength": "HIGH",
+      "citations": ["Clinical Guideline"],
+      "tags": ["allergy"]
+    },
+    {
+      "id": "KB-003",
+      "drugA": "Metformin",
+      "drugB": null,
+      "severity": "CONTRAINDICATED",
+      "mechanism": "eGFR below 30 mL/min.",
+      "recommendation": "Do not initiate therapy.",
+      "evidenceStrength": "HIGH",
+      "citations": ["KDIGO"],
+      "tags": ["renal"]
     }
   ]
 }
