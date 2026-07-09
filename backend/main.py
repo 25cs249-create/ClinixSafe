@@ -5,35 +5,18 @@ from backend.services.knowledge_base import KnowledgeBaseService
 from backend.services.rule_engine import RuleEngine
 from backend.validation.firewall import AIFirewall
 from backend.api.models import AnalyzeRequest
+from backend.reasoning.router import ReasoningRouter
 
-# -------------------------------------------------
-# Settings
-# -------------------------------------------------
-
+router = ReasoningRouter()
 settings = get_settings()
-
-# -------------------------------------------------
-# Services
-# -------------------------------------------------
-
 kb = KnowledgeBaseService()
-
 engine = RuleEngine()
-
 firewall = AIFirewall()
-
-# -------------------------------------------------
-# FastAPI App
-# -------------------------------------------------
 
 app = FastAPI(
     title="ClinixSafe API",
     version=settings.engine_version,
 )
-
-# -------------------------------------------------
-# Routes
-# -------------------------------------------------
 
 @app.get("/")
 def root():
@@ -70,7 +53,13 @@ def analyze(request: AnalyzeRequest):
         request.currentMedications,
         request.newMedication,
     )
-
+    decision = router.decide(
+        request.currentMedications,
+        request.newMedication,
+    )
+    print(
+        f"Routing: {decision.reason} | AI Required: {decision.requires_ai}"
+    )
     report = firewall.validate(report)
 
     return report
