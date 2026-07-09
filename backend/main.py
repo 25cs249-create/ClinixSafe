@@ -1,24 +1,39 @@
 from fastapi import FastAPI
 
 from backend.settings import get_settings
+from backend.services.knowledge_base import KnowledgeBaseService
+from backend.services.rule_engine import RuleEngine
+from backend.validation.firewall import AIFirewall
+from backend.api.models import AnalyzeRequest
+
+# -------------------------------------------------
+# Settings
+# -------------------------------------------------
 
 settings = get_settings()
 
-from backend.services.knowledge_base import KnowledgeBaseService
+# -------------------------------------------------
+# Services
+# -------------------------------------------------
 
 kb = KnowledgeBaseService()
 
-from backend.services.rule_engine import RuleEngine
-
 engine = RuleEngine()
 
-from backend.api.models import AnalyzeRequest
+firewall = AIFirewall()
+
+# -------------------------------------------------
+# FastAPI App
+# -------------------------------------------------
 
 app = FastAPI(
     title="ClinixSafe API",
-    version=settings.engine_version
+    version=settings.engine_version,
 )
 
+# -------------------------------------------------
+# Routes
+# -------------------------------------------------
 
 @app.get("/")
 def root():
@@ -29,24 +44,24 @@ def root():
 
 @app.get("/health")
 def health():
-
     return {
         "status": "operational",
         "engine_version": settings.engine_version,
         "knowledge_base_version": kb.version,
         "knowledge_entries": kb.entry_count,
-        "demo_mode": settings.demo_mode
+        "demo_mode": settings.demo_mode,
     }
+
 
 @app.get("/demo/high-risk")
 def demo_high_risk():
-
     report = engine.analyze(
         ["Warfarin"],
-        "Ibuprofen"
+        "Ibuprofen",
     )
 
     return report
+
 
 @app.post("/api/v1/analyze")
 def analyze(request: AnalyzeRequest):
@@ -55,5 +70,7 @@ def analyze(request: AnalyzeRequest):
         request.currentMedications,
         request.newMedication,
     )
+
+    report = firewall.validate(report)
 
     return report
