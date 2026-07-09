@@ -1,0 +1,20 @@
+[
+  {
+    "id": "CASE-001",
+    "description": "Warfarin + Ibuprofen",
+    "currentMedications": [
+      "Warfarin"
+    ],
+    "newMedication": "Ibuprofen",
+    "expectedRisk": "HIGH"
+  },
+  {
+    "id": "CASE-002",
+    "description": "Safe Prescription",
+    "currentMedications": [
+      "Vitamin C"
+    ],
+    "newMedication": "Paracetamol",
+    "expectedRisk": "SAFE"
+  }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "id": "CASE-001",
+        "description": "Warfarin + Ibuprofen",
+        "expected": "HIGH",
+        "actual": "HIGH",
+        "passed": true
+    },
+    {
+        "id": "CASE-002",
+        "description": "Safe Prescription",
+        "expected": "SAFE",
+        "actual": "SAFE",
+        "passed": true
+    }
+]
