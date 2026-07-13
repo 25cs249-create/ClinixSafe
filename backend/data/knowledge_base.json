@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "version": "1.1.0",
-    "lastUpdated": "2025-01-15"
+   "version": "1.2.0",
+    "lastUpdated": "2026-07-13T12:00:00Z"
   },
   "entries": [
     {
@@ -69,6 +69,50 @@
       "evidenceStrength": "HIGH",
       "citations": ["FDA Drug Label: Simvastatin"],
       "tags": ["drug_interaction", "myopathy_risk", "statin", "antibiotic"]
+    },
+    {
+      "id": "KB-007",
+      "drugA": "digoxin",
+      "drugB": "amiodarone",
+      "severity": "HIGH",
+      "mechanism": "Amiodarone inhibits P-glycoprotein and reduces renal clearance of digoxin, leading to increased digoxin plasma concentrations. Elevated digoxin levels increase the risk of digoxin toxicity: bradycardia, heart block, and life-threatening arrhythmias.",
+      "recommendation": "Reduce digoxin dose by 50% when initiating amiodarone. Monitor digoxin levels within 1 week and adjust dose. Watch for signs of digoxin toxicity (nausea, visual disturbances, bradycardia).",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Digoxin"],
+      "tags": ["drug_interaction", "digoxin_toxicity", "cardiovascular"]
+    },
+    {
+      "id": "KB-008",
+      "drugA": "digoxin",
+      "drugB": "verapamil",
+      "severity": "MONITOR",
+      "mechanism": "Verapamil inhibits P-glycoprotein-mediated renal digoxin excretion, increasing digoxin plasma levels by 50-75%. Additionally, both drugs slow AV node conduction, increasing risk of bradycardia and AV block.",
+      "recommendation": "Reduce digoxin dose by 30-50% when initiating verapamil. Monitor digoxin levels and ECG. Watch for symptoms of digoxin toxicity and bradycardia.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Verapamil"],
+      "tags": ["drug_interaction", "digoxin_toxicity", "cardiovascular"]
+    },
+    {
+      "id": "KB-009",
+      "drugA": "lisinopril",
+      "drugB": "spironolactone",
+      "severity": "REVIEW",
+      "mechanism": "ACE inhibitors and potassium-sparing diuretics both reduce potassium excretion through different mechanisms. Combination substantially increases risk of hyperkalemia, which can cause life-threatening cardiac arrhythmias.",
+      "recommendation": "Combination is appropriate in heart failure under specialist supervision. Monitor serum potassium weekly for the first month, then monthly. Avoid in existing hyperkalemia or significant renal impairment.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Lisinopril"],
+      "tags": ["drug_interaction", "hyperkalemia", "ace_inhibitor", "cardiovascular"]
+    },
+    {
+      "id": "KB-010",
+      "drugA": "methotrexate",
+      "drugB": "ibuprofen",
+      "severity": "HIGH",
+      "mechanism": "NSAIDs reduce renal clearance of methotrexate by decreasing renal blood flow and competing for tubular secretion. This increases methotrexate serum concentrations and risk of severe toxicity: myelosuppression, mucositis, hepatotoxicity, nephrotoxicity.",
+      "recommendation": "Avoid concurrent NSAIDs, particularly with high-dose methotrexate. If low-dose methotrexate (rheumatoid arthritis) requires NSAID co-therapy, monitor blood counts and renal function closely. Use paracetamol as preferred analgesic.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Methotrexate"],
+      "tags": ["drug_interaction", "methotrexate_toxicity", "nsaid"]
     }
   ]
 }

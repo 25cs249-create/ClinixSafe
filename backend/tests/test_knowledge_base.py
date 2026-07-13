@@ -6,7 +6,7 @@ kb = KnowledgeBaseService()
 
 def test_load():
 
-    assert kb.entry_count == 3
+    assert kb.entry_count == 10
 
 
 def test_find_interaction():
