@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     temperature: float = 0.0
 
     kb_path: Path = Path("backend/data/knowledge_base.json")
-
+    aliases_path: Path = Path("backend/data/medication_aliases.json")
 
 @lru_cache
 def get_settings():

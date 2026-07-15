@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-07-13T12:00:00Z",
+    "description": "Indian brand-to-generic medication aliases used for deterministic medication matching."
+  },
+  "aliases": {
+    "crocin":       "paracetamol",
+    "crocin 500":   "paracetamol",
+    "crocin 650":   "paracetamol",
+    "dolo":         "paracetamol",
+    "dolo 650":     "paracetamol",
+    "calpol":       "paracetamol",
+    "calpol 500":   "paracetamol",
+    "panadol":      "paracetamol",
+
+    "ecosprin":     "aspirin",
+    "ecosprin 75":  "aspirin",
+    "disprin":      "aspirin",
+
+    "brufen":       "ibuprofen",
+    "brufen 400":   "ibuprofen",
+    "ibugesic":     "ibuprofen",
+    "combiflam":    "ibuprofen",
+
+    "voveran":      "diclofenac",
+    "voveran sr":   "diclofenac",
+
+    "forcan":       "fluconazole",
+
+    "klacid":       "clarithromycin",
+
+    "zoloft":       "sertraline",
+
+    "cordarone":    "amiodarone",
+
+    "lanoxin":      "digoxin",
+
+    "calaptin":     "verapamil",
+
+    "aldactone":    "spironolactone",
+
+    "folitrax":     "methotrexate"
+  }
+}
