@@ -6,6 +6,7 @@ from backend.schemas.core import (
 )
 from backend.services.alias_resolver import AliasResolver
 from backend.services.knowledge_base import KnowledgeBaseService
+from backend.services.slashy_service import SlashyService
 
 
 class RuleEngine:
@@ -14,13 +15,14 @@ class RuleEngine:
 
         self.kb = KnowledgeBaseService()
         self.resolver = AliasResolver()
+        self.slashy = SlashyService()
 
     def _limited_report(self, medication_name: str) -> SafetyReport:
         """
         Return a LIMITED safety report for medications that cannot
         be verified using the current knowledge base.
         """
-        return SafetyReport(
+        report = SafetyReport(
             analysisVersion="1.0.0",
             knowledgeBaseVersion=self.kb.version,
             riskLevel=RiskLevel.LIMITED,
@@ -38,7 +40,15 @@ class RuleEngine:
             ],
         )
 
-    def analyze(self, current_medications: list[str], new_medication: str):
+        report.communicationDrafts = self.slashy.create_drafts(report)
+
+        return report
+
+    def analyze(
+        self,
+        current_medications: list[str],
+        new_medication: str,
+    ) -> SafetyReport:
 
         resolved_current = [
             (
@@ -79,7 +89,7 @@ class RuleEngine:
                     priority="HIGH",
                 )
 
-                return SafetyReport(
+                report = SafetyReport(
                     analysisVersion="1.0.0",
                     knowledgeBaseVersion=self.kb.version,
                     riskLevel=RiskLevel(match["severity"]),
@@ -93,7 +103,13 @@ class RuleEngine:
                     evidenceTrace=[trace],
                 )
 
-        return SafetyReport(
+                report.communicationDrafts = (
+                    self.slashy.create_drafts(report)
+                )
+
+                return report
+
+        report = SafetyReport(
             analysisVersion="1.0.0",
             knowledgeBaseVersion=self.kb.version,
             riskLevel=RiskLevel.SAFE,
@@ -103,3 +119,9 @@ class RuleEngine:
                 "Safe based on current knowledge base."
             ],
         )
+
+        report.communicationDrafts = (
+            self.slashy.create_drafts(report)
+        )
+
+        return report

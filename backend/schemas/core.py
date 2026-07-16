@@ -7,6 +7,7 @@ from uuid import uuid4
 
 from pydantic import BaseModel, Field
 
+
 class RiskLevel(str, Enum):
     SAFE = "SAFE"
     MONITOR = "MONITOR"
@@ -22,12 +23,19 @@ class EvidenceStrength(str, Enum):
     LIMITED = "LIMITED"
 
 
+class CommunicationType(str, Enum):
+    CLINICIAN = "CLINICIAN"
+    PATIENT = "PATIENT"
+    FOLLOW_UP = "FOLLOW_UP"
+
+
 class ObservationType(str, Enum):
     EGFR = "eGFR"
     CREATININE = "Creatinine"
     ALT = "ALT"
     AST = "AST"
     POTASSIUM = "Potassium"
+
 
 class Condition(BaseModel):
     name: str
@@ -49,10 +57,12 @@ class Patient(BaseModel):
     conditions: list[Condition] = []
     allergies: list[Allergy] = []
 
+
 class Medication(BaseModel):
     id: str
     genericName: str
     drugClass: Optional[str] = None
+
 
 class Observation(BaseModel):
     type: ObservationType
@@ -60,6 +70,7 @@ class Observation(BaseModel):
     unit: str
 
     effectiveDateTime: datetime
+
 
 class EvidenceTrace(BaseModel):
     evidenceId: str
@@ -73,6 +84,7 @@ class EvidenceTrace(BaseModel):
     sourceType: str
 
     priority: str
+
 
 class ToolCall(BaseModel):
     name: str
@@ -88,6 +100,17 @@ class ToolCall(BaseModel):
     requestId: str = Field(
         default_factory=lambda: f"REQ-{uuid4().hex[:8].upper()}"
     )
+
+
+class CommunicationDraft(BaseModel):
+    type: CommunicationType
+
+    title: str
+
+    content: str
+
+    reviewRequired: bool = True
+
 
 class SafetyReport(BaseModel):
 
@@ -114,6 +137,8 @@ class SafetyReport(BaseModel):
     warnings: list[str] = []
 
     toolCalls: list[ToolCall] = []
+
+    communicationDrafts: list[CommunicationDraft] = []
 
     generatedAt: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc)
