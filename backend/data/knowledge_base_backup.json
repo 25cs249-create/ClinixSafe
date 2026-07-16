@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "version": "1.1.0",
+    "lastUpdated": "2025-01-15"
+  },
+  "entries": [
+    {
+      "id": "KB-001",
+      "drugA": "warfarin",
+      "drugB": "ibuprofen",
+      "severity": "HIGH",
+      "mechanism": "NSAIDs inhibit platelet aggregation and can cause gastric mucosal damage. Combined with warfarin's anticoagulant effect, this significantly increases the risk of serious bleeding, including gastrointestinal hemorrhage.",
+      "recommendation": "Avoid concurrent use. If analgesia is required, use paracetamol. Monitor INR closely if NSAID use is unavoidable.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Warfarin Sodium"],
+      "tags": ["drug_interaction", "bleeding_risk", "anticoagulant", "nsaid"]
+    },
+    {
+      "id": "KB-002",
+      "drugA": "warfarin",
+      "drugB": "aspirin",
+      "severity": "HIGH",
+      "mechanism": "Aspirin irreversibly inhibits platelet COX-1. Combined with warfarin's anticoagulant effect, dual antihemostatic action substantially increases bleeding risk, particularly gastrointestinal and intracranial hemorrhage.",
+      "recommendation": "Use combination only for specific indications (mechanical heart valves, acute coronary syndrome). Use lowest effective aspirin dose. Monitor INR frequently.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Warfarin Sodium"],
+      "tags": ["drug_interaction", "bleeding_risk", "anticoagulant", "antiplatelet"]
+    },
+    {
+      "id": "KB-003",
+      "drugA": "warfarin",
+      "drugB": "diclofenac",
+      "severity": "HIGH",
+      "mechanism": "Diclofenac, like other NSAIDs, inhibits platelet function and can cause gastric mucosal injury. Concurrent use with warfarin significantly increases the risk of serious bleeding.",
+      "recommendation": "Avoid concurrent use. Prefer paracetamol for analgesia in patients on warfarin. Monitor INR if combination is unavoidable.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Warfarin Sodium"],
+      "tags": ["drug_interaction", "bleeding_risk", "anticoagulant", "nsaid"]
+    },
+    {
+      "id": "KB-004",
+      "drugA": "warfarin",
+      "drugB": "fluconazole",
+      "severity": "HIGH",
+      "mechanism": "Fluconazole is a potent CYP2C9 inhibitor. Since warfarin is metabolized by CYP2C9, concurrent use markedly increases warfarin plasma levels and bleeding risk. Effect is dose-dependent.",
+      "recommendation": "Avoid concurrent use if possible. If fluconazole is required, reduce warfarin dose by 25-50% and monitor INR closely during and for 1-2 weeks after fluconazole course.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Fluconazole"],
+      "tags": ["drug_interaction", "bleeding_risk", "anticoagulant", "antifungal"]
+    },
+    {
+      "id": "KB-005",
+      "drugA": "sertraline",
+      "drugB": "tramadol",
+      "severity": "HIGH",
+      "mechanism": "Sertraline inhibits serotonin reuptake. Tramadol increases serotonin release and inhibits its reuptake. Combined use significantly increases the risk of serotonin syndrome: neuromuscular abnormalities, autonomic dysfunction, altered mental status.",
+      "recommendation": "Avoid concurrent use where possible. If combination is necessary, use lowest effective doses and monitor for serotonin syndrome (agitation, hyperthermia, clonus, hyperreflexia). Consider paracetamol as safer alternative.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Tramadol"],
+      "tags": ["drug_interaction", "serotonin_syndrome", "ssri", "psychiatric"]
+    },
+    {
+      "id": "KB-006",
+      "drugA": "simvastatin",
+      "drugB": "clarithromycin",
+      "severity": "CONTRAINDICATED",
+      "mechanism": "Clarithromycin is a potent CYP3A4 inhibitor. Simvastatin is metabolized by CYP3A4. Concurrent use markedly increases simvastatin plasma concentrations, dramatically raising the risk of myopathy and rhabdomyolysis.",
+      "recommendation": "Contraindicated. Suspend simvastatin during clarithromycin course, or switch to azithromycin (minimal CYP3A4 inhibition) or use pravastatin/rosuvastatin instead.",
+      "evidenceStrength": "HIGH",
+      "citations": ["FDA Drug Label: Simvastatin"],
+      "tags": ["drug_interaction", "myopathy_risk", "statin", "antibiotic"]
+    }
+  ]
+}

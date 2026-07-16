@@ -26,12 +26,12 @@ def test_analyze_safe():
 
     response = client.post(
         "/api/v1/analyze",
-        json={
-            "currentMedications": [
-                "Vitamin C"
-            ],
-            "newMedication": "Paracetamol"
-        },
+            json={
+    "currentMedications": [
+        "Warfarin"
+    ],
+    "newMedication": "Crocin"
+    }
     )
 
     assert response.status_code == 200
