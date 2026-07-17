@@ -23,6 +23,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
+        "https://clinix-safe.vercel.app",
+        "https://clinix-safe-git-main-clinixsafe.vercel.app",
+        "https://clinix-safe-haj1nbbp7-clinixsafe.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
