@@ -7,7 +7,7 @@ const API_BASE =
 const client = axios.create({
   baseURL: API_BASE,
   timeout: 30000,
-  headers: { "Content-Type": "application/json "},
+  headers: { "Content-Type": "application/json"},
 });
 
 export class BackendUnavailableError extends Error {
