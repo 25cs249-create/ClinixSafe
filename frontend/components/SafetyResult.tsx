@@ -1,4 +1,4 @@
-import type { SafetyReport } from "../app/types";
+import type { SafetyReport, CommunicationDraft } from "../app/types";
 import { RiskBadge } from "./RiskBadge";
 import { EvidenceCard } from "./EvidenceCard";
 
@@ -6,10 +6,24 @@ interface Props {
   report: SafetyReport;
 }
 
+function draftLabel(type: CommunicationDraft["type"]) {
+  switch (type) {
+    case "CLINICIAN":
+      return "Clinician";
+    case "PATIENT":
+      return "Patient";
+    case "FOLLOW_UP":
+      return "Follow-up";
+    default:
+      return type;
+  }
+}
+
 export function SafetyResult({ report }: Props) {
-  const hasEvidence     = (report.evidenceTrace?.length ?? 0) > 0;
+  const hasEvidence = (report.evidenceTrace?.length ?? 0) > 0;
   const hasAlternatives = (report.alternativeMedications?.length ?? 0) > 0;
-  const hasWarnings     = (report.warnings?.length ?? 0) > 0;
+  const hasWarnings = (report.warnings?.length ?? 0) > 0;
+  const hasDrafts = (report.communicationDrafts?.length ?? 0) > 0;
 
   return (
     <div className="space-y-5">
@@ -58,9 +72,49 @@ export function SafetyResult({ report }: Props) {
           </h2>
           <ul className="space-y-1">
             {report.warnings!.map((w, i) => (
-              <li key={i} className="text-sm text-amber-700">{w}</li>
+              <li key={i} className="text-sm text-amber-700">
+                {w}
+              </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {hasDrafts && (
+        <div>
+          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+            Communication Drafts
+          </h2>
+
+          <div className="space-y-3">
+            {report.communicationDrafts!.map((draft, i) => (
+              <div
+                key={`${draft.type}-${i}`}
+                className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+              >
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                      {draftLabel(draft.type)}
+                    </p>
+                    <h3 className="text-sm font-semibold text-gray-900">
+                      {draft.title}
+                    </h3>
+                  </div>
+
+                  {draft.reviewRequired && (
+                    <span className="shrink-0 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-800">
+                      Review Required
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                  {draft.content}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

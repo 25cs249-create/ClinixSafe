@@ -16,6 +16,11 @@ export type SourceType =
 
 export type Priority = "HIGH" | "MEDIUM" | "LOW";
 
+export type CommunicationType =
+  | "CLINICIAN"
+  | "PATIENT"
+  | "FOLLOW_UP";
+
 export interface EvidenceTrace {
   evidenceId: string;
   title: string;
@@ -23,6 +28,13 @@ export interface EvidenceTrace {
   source: string;
   sourceType: SourceType;
   priority: Priority;
+}
+
+export interface CommunicationDraft {
+  type: CommunicationType;
+  title: string;
+  content: string;
+  reviewRequired?: boolean;
 }
 
 export interface SafetyReport {
@@ -37,6 +49,7 @@ export interface SafetyReport {
   alternativeMedications?: string[];
   evidenceTrace?: EvidenceTrace[];
   warnings?: string[];
+  communicationDrafts?: CommunicationDraft[];
   generatedAt?: string;
 }
 

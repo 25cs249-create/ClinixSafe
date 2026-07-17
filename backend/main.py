@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from backend.settings import get_settings
 from backend.services.knowledge_base import KnowledgeBaseService
 from backend.services.rule_engine import RuleEngine
@@ -28,6 +29,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 def root():
     return {
@@ -53,6 +55,8 @@ def demo_high_risk():
         "Ibuprofen",
     )
 
+    report = firewall.validate(report)
+
     return report
 
 
@@ -63,13 +67,16 @@ def analyze(request: AnalyzeRequest):
         request.currentMedications,
         request.newMedication,
     )
+
     decision = router.decide(
         request.currentMedications,
         request.newMedication,
     )
+
     print(
         f"Routing: {decision.reason} | AI Required: {decision.requires_ai}"
     )
+
     report = firewall.validate(report)
 
     return report
