@@ -57,3 +57,8 @@ export interface AnalyzeRequest {
   currentMedications: string[];
   newMedication: string;
 }
+export type AppState =
+  | "idle"
+  | "loading"
+  | "success"
+  | "error";

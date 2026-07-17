@@ -5,7 +5,7 @@ import type { SafetyReport } from "./types";
 import { analyzeMedication, BackendUnavailableError } from "./lib/api";
 import { SafetyResult } from "../components/SafetyResult";
 
-type AppState = "idle "| "loading "| "success "| "error";
+type AppState =  "idle"|  "loading"|  "success"| "error";
 
 export default function Home() {
   const [currentMedications, setCurrentMedications] = useState("");
@@ -118,12 +118,12 @@ export default function Home() {
               <div className="flex gap-3 pt-1">
                 <button
                   type="submit"
-                  disabled={state === "loading "|| !newMedication.trim()}
+                  disabled={state ===  "loading"|| !newMedication.trim()}
                   className="flex-1 bg-blue-600 text-white font-semibold py-2.5 px-4 rounded-lg text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  {state === "loading "? "Analyzing... ": "Verify Medication"}
+                  {state ===  "loading"? "Analyzing... ": "Verify Medication"}
                 </button>
-                {state !== "idle "&& (
+                {state !==  "idle"&& (
                   <button
                     type="button"
                     onClick={handleReset}
@@ -137,7 +137,7 @@ export default function Home() {
           </section>
 
           <section aria-live="polite">
-            {state === "idle "&& (
+            {state ===  "idle"&& (
               <div className="flex flex-col items-center justify-center min-h-64 text-center py-12">
                 <div className="text-5xl mb-4">🛡️</div>
                 <h2 className="text-base font-medium text-gray-700 mb-2">
@@ -149,7 +149,7 @@ export default function Home() {
               </div>
             )}
 
-            {state === "loading "&& (
+            {state ===  "loading"&& (
               <div className="flex flex-col items-center justify-center min-h-64 py-12">
                 <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-5 "/>
                 <p className="text-gray-700 font-medium text-sm">
@@ -158,7 +158,7 @@ export default function Home() {
               </div>
             )}
 
-            {state === "error "&& (
+            {state ===  "error"&& (
               <div className="flex flex-col items-center justify-center min-h-64 text-center py-12">
                 <div className="text-5xl mb-4">⚠️</div>
                 <h2 className="text-base font-semibold text-gray-800 mb-2">
@@ -168,7 +168,7 @@ export default function Home() {
               </div>
             )}
 
-            {state === "success "&& report && <SafetyResult report={report} />}
+            {state ===  "success"&& report && <SafetyResult report={report} />}
           </section>
 
         </div>

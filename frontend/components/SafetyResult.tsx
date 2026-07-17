@@ -27,19 +27,27 @@ export function SafetyResult({ report }: Props) {
 
   return (
     <div className="space-y-5">
-      <RiskBadge riskLevel={report.riskLevel} size="lg "/>
+      <RiskBadge riskLevel={report.riskLevel} size="lg" />
 
-      <p className="text-sm text-gray-800 leading-relaxed">{report.summary}</p>
+      <p className="text-sm text-gray-800 leading-relaxed">
+        {report.summary}
+      </p>
 
       {report.recommendations.length > 0 && (
         <div>
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
             Recommendations
           </h2>
+
           <ul className="space-y-2">
             {report.recommendations.map((rec, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-800">
-                <span className="text-green-500 mt-0.5 shrink-0 font-bold">✓</span>
+              <li
+                key={i}
+                className="flex items-start gap-2 text-sm text-gray-800"
+              >
+                <span className="text-green-500 mt-0.5 shrink-0 font-bold">
+                  ✓
+                </span>
                 {rec}
               </li>
             ))}
@@ -52,6 +60,7 @@ export function SafetyResult({ report }: Props) {
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
             Consider Instead
           </h2>
+
           <div className="flex flex-wrap gap-2">
             {report.alternativeMedications!.map((alt, i) => (
               <span
@@ -70,10 +79,11 @@ export function SafetyResult({ report }: Props) {
           <h2 className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-2">
             ⚠ Warnings
           </h2>
+
           <ul className="space-y-1">
-            {report.warnings!.map((w, i) => (
+            {report.warnings!.map((warning, i) => (
               <li key={i} className="text-sm text-amber-700">
-                {w}
+                {warning}
               </li>
             ))}
           </ul>
@@ -97,6 +107,7 @@ export function SafetyResult({ report }: Props) {
                     <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
                       {draftLabel(draft.type)}
                     </p>
+
                     <h3 className="text-sm font-semibold text-gray-900">
                       {draft.title}
                     </h3>
@@ -123,9 +134,13 @@ export function SafetyResult({ report }: Props) {
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
             Evidence Trace
           </h2>
+
           <div className="space-y-3">
             {report.evidenceTrace!.map((trace) => (
-              <EvidenceCard key={trace.evidenceId} evidence={trace} />
+              <EvidenceCard
+                key={trace.evidenceId}
+                evidence={trace}
+              />
             ))}
           </div>
         </div>
