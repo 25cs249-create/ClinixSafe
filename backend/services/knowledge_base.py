@@ -1,6 +1,6 @@
 import json
 
-from backend.settings import get_settings
+from  settings import get_settings
 
 
 class KnowledgeBaseService:
@@ -15,7 +15,7 @@ class KnowledgeBaseService:
         self.entries = self.data["entries"]
 
         # Build a set of all recognized medications for O(1) lookup.
-        # A medication is "known" if it either:
+        # A medication is "known "if it either:
         #   - appears in the KB as drugA or drugB, OR
         #   - is the generic target of an alias mapping
         # This distinguishes truly unknown drugs (LIMITED) from
@@ -53,7 +53,7 @@ class KnowledgeBaseService:
         Comparison is case-insensitive and whitespace-trimmed.
 
         Used by RuleEngine to distinguish "no known interaction"
-        (SAFE) from "drug not recognized" (LIMITED).
+        (SAFE) from "drug not recognized "(LIMITED).
         """
         if not medication_name:
             return False

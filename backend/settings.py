@@ -27,8 +27,8 @@ class Settings(BaseSettings):
     # Data
     # --------------------------------------------------
 
-    kb_path: Path = Path("backend/data/knowledge_base.json")
-    aliases_path: Path = Path("backend/data/medication_aliases.json")
+    kb_path: Path = Path( "data/knowledge_base.json")
+    aliases_path: Path = Path( "data/medication_aliases.json")
 
     # --------------------------------------------------
     # Slashy (Partner Integration)

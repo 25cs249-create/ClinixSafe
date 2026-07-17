@@ -12,7 +12,7 @@ Tests the alias resolution contract in isolation:
 
 import pytest
 
-from backend.services.alias_resolver import AliasResolver
+from  services.alias_resolver import AliasResolver
 
 
 @pytest.fixture(scope="module")
@@ -47,12 +47,12 @@ def test_resolves_case_insensitively(resolver):
 
 
 def test_resolves_with_leading_and_trailing_whitespace(resolver):
-    assert resolver.resolve(" Crocin ") == "paracetamol"
+    assert resolver.resolve( "Crocin ") == "paracetamol"
 
 
 def test_resolves_with_mixed_case_and_whitespace(resolver):
     """Combined trim + case normalization for a multi-word brand."""
-    assert resolver.resolve("   DOLO 650   ") == "paracetamol"
+    assert resolver.resolve( "  DOLO 650   ") == "paracetamol"
 
 
 # ─── Passthrough behavior ────────────────────────────────────────────
@@ -72,7 +72,7 @@ def test_empty_string_returns_empty(resolver):
 
 
 def test_whitespace_only_returns_empty(resolver):
-    assert resolver.resolve("   ") == ""
+    assert resolver.resolve( "  ") == ""
 
 
 # ─── India-specific coverage ─────────────────────────────────────────

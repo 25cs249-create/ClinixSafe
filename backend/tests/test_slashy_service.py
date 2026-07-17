@@ -1,10 +1,10 @@
-from backend.schemas.core import (
+from  schemas.core import (
     CommunicationType,
     EvidenceStrength,
     RiskLevel,
     SafetyReport,
 )
-from backend.services.slashy_service import SlashyService
+from  services.slashy_service import SlashyService
 
 
 service = SlashyService()
@@ -65,7 +65,7 @@ def test_safe_message():
         _report(RiskLevel.SAFE)
     )
 
-    assert "No known medication interaction" in drafts[1].content
+    assert "No known medication interaction "in drafts[1].content
 
 
 def test_limited_message():
@@ -74,7 +74,7 @@ def test_limited_message():
         _report(RiskLevel.LIMITED)
     )
 
-    assert "could not be fully verified" in drafts[1].content
+    assert "could not be fully verified "in drafts[1].content
 
 
 def test_high_message():
@@ -83,4 +83,4 @@ def test_high_message():
         _report(RiskLevel.HIGH)
     )
 
-    assert "medication safety concern" in drafts[1].content
+    assert "medication safety concern "in drafts[1].content

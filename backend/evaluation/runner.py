@@ -1,14 +1,14 @@
 import json
 from pathlib import Path
 
-from backend.services.rule_engine import RuleEngine
-from backend.evaluation.metrics import EvaluationMetrics
-from backend.evaluation.report_writer import (
+from  services.rule_engine import RuleEngine
+from  evaluation.metrics import EvaluationMetrics
+from  evaluation.report_writer import (
     write_json,
     write_markdown,
 )
 
-DATASET = Path("backend/evaluation/evaluation_dataset.json")
+DATASET = Path( "evaluation/evaluation_dataset.json")
 
 
 def load_dataset():

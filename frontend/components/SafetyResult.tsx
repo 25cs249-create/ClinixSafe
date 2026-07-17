@@ -27,7 +27,7 @@ export function SafetyResult({ report }: Props) {
 
   return (
     <div className="space-y-5">
-      <RiskBadge riskLevel={report.riskLevel} size="lg" />
+      <RiskBadge riskLevel={report.riskLevel} size="lg "/>
 
       <p className="text-sm text-gray-800 leading-relaxed">{report.summary}</p>
 

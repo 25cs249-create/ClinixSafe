@@ -1,10 +1,10 @@
-from backend.schemas.core import (
+from  schemas.core import (
     CommunicationDraft,
     CommunicationType,
     RiskLevel,
     SafetyReport,
 )
-from backend.services.slashy_client import SlashyClient
+from  services.slashy_client import SlashyClient
 
 
 class SlashyService:
@@ -68,7 +68,7 @@ class SlashyService:
     ) -> CommunicationDraft:
 
         recommendations = (
-            "\n".join(f"• {item}" for item in report.recommendations)
+            "\n".join(f"• {item} "for item in report.recommendations)
             if report.recommendations
             else "• No additional recommendations."
         )

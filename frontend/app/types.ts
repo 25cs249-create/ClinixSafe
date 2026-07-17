@@ -6,7 +6,7 @@ export type RiskLevel =
   | "CONTRAINDICATED"
   | "LIMITED";
 
-export type EvidenceStrength = "HIGH" | "MODERATE" | "LIMITED";
+export type EvidenceStrength = "HIGH "| "MODERATE "| "LIMITED";
 
 export type SourceType =
   | "FDA_LABEL"
@@ -14,7 +14,7 @@ export type SourceType =
   | "INTERACTION_DB"
   | "CLINICAL_DATA";
 
-export type Priority = "HIGH" | "MEDIUM" | "LOW";
+export type Priority = "HIGH "| "MEDIUM "| "LOW";
 
 export type CommunicationType =
   | "CLINICIAN"

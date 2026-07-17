@@ -1,4 +1,4 @@
-from backend.schemas.core import (
+from  schemas.core import (
     CommunicationDraft,
     SafetyReport,
 )

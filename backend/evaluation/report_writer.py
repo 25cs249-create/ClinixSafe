@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 
-OUTPUT = Path("backend/evaluation/output")
+OUTPUT = Path( "evaluation/output")
 
 
 OUTPUT.mkdir(parents=True, exist_ok=True)

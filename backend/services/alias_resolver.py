@@ -21,7 +21,7 @@ Design:
 import json
 from pathlib import Path
 
-from backend.settings import get_settings
+from  settings import get_settings
 
 
 class AliasResolver:

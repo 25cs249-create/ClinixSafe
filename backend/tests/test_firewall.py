@@ -1,7 +1,7 @@
 import pytest
 
-from backend.validation.firewall import AIFirewall
-from backend.schemas.core import (
+from  validation.firewall import AIFirewall
+from  schemas.core import (
     SafetyReport,
     RiskLevel,
     EvidenceStrength,

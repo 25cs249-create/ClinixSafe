@@ -1,5 +1,5 @@
-from backend.services.rule_engine import RuleEngine
-from backend.schemas.core import RiskLevel
+from  services.rule_engine import RuleEngine
+from  schemas.core import RiskLevel
 
 
 engine = RuleEngine()
@@ -41,7 +41,7 @@ def test_unknown_new_medication_returns_limited():
 
     assert report.riskLevel == RiskLevel.LIMITED
 
-    assert "could not be verified" in report.summary.lower()
+    assert "could not be verified "in report.summary.lower()
 
     assert report.evidenceTrace == []
 
@@ -55,7 +55,7 @@ def test_unknown_current_medication_returns_limited():
 
     assert report.riskLevel == RiskLevel.LIMITED
 
-    assert "could not be verified" in report.summary.lower()
+    assert "could not be verified "in report.summary.lower()
 
     assert report.evidenceTrace == []
 

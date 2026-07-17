@@ -1,4 +1,4 @@
-from backend.services.knowledge_base import KnowledgeBaseService
+from  services.knowledge_base import KnowledgeBaseService
 
 
 kb = KnowledgeBaseService()

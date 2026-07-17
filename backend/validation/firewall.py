@@ -1,4 +1,4 @@
-from backend.schemas.core import SafetyReport
+from  schemas.core import SafetyReport
 
 
 class AIFirewall:

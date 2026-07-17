@@ -1,4 +1,4 @@
-from backend.evaluation.runner import load_dataset
+from  evaluation.runner import load_dataset
 
 
 def test_dataset_loads():

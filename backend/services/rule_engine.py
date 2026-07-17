@@ -1,12 +1,12 @@
-from backend.schemas.core import (
+from  schemas.core import (
     RiskLevel,
     EvidenceStrength,
     SafetyReport,
     EvidenceTrace,
 )
-from backend.services.alias_resolver import AliasResolver
-from backend.services.knowledge_base import KnowledgeBaseService
-from backend.services.slashy_service import SlashyService
+from  services.alias_resolver import AliasResolver
+from  services.knowledge_base import KnowledgeBaseService
+from  services.slashy_service import SlashyService
 
 
 class RuleEngine:

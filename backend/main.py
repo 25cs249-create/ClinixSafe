@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.settings import get_settings
-from backend.services.knowledge_base import KnowledgeBaseService
-from backend.services.rule_engine import RuleEngine
-from backend.validation.firewall import AIFirewall
-from backend.api.models import AnalyzeRequest
-from backend.reasoning.router import ReasoningRouter
+from settings import get_settings
+from services.knowledge_base import KnowledgeBaseService
+from services.rule_engine import RuleEngine
+from validation.firewall import AIFirewall
+from api.models import AnalyzeRequest
+from reasoning.router import ReasoningRouter
 
 router = ReasoningRouter()
 settings = get_settings()
@@ -62,7 +62,6 @@ def demo_high_risk():
 
 @app.post("/api/v1/analyze")
 def analyze(request: AnalyzeRequest):
-
     report = engine.analyze(
         request.currentMedications,
         request.newMedication,
