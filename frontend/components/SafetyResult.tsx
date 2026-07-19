@@ -1,4 +1,5 @@
 import type { SafetyReport, CommunicationDraft } from "../app/types";
+import { downloadClinicalReport } from "../app/lib/pdf";
 import { RiskBadge } from "./RiskBadge";
 import { EvidenceCard } from "./EvidenceCard";
 
@@ -27,91 +28,103 @@ export function SafetyResult({ report }: Props) {
 
   return (
     <div className="space-y-5">
-      <RiskBadge riskLevel={report.riskLevel} size="lg" />
+      {/* Report Header */}
+      <div className="flex items-center justify-between">
+        <RiskBadge riskLevel={report.riskLevel} size="lg" />
+
+        <button
+          type="button"
+          onClick={() => downloadClinicalReport(report)}
+          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+        >
+          📄 Export PDF
+        </button>
+      </div>
+
+      {/* Report Metadata */}
       <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-  <div className="flex items-center justify-between mb-4">
-    <div>
-      <h2 className="text-lg font-bold text-slate-900">
-        Clinical Safety Assessment
-      </h2>
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900">
+              Clinical Safety Assessment
+            </h2>
 
-      <p className="text-sm text-slate-500">
-        AI Medication Safety Verification Report
-      </p>
-    </div>
+            <p className="text-sm text-slate-500">
+              AI Medication Safety Verification Report
+            </p>
+          </div>
 
-    <div className="text-right">
-      <p className="text-xs text-slate-500 uppercase">
-        Report ID
-      </p>
+          <div className="text-right">
+            <p className="text-xs uppercase text-slate-500">Report ID</p>
 
-      <p className="font-semibold">
-        {report.reportId ?? "CLX-DEMO"}
-      </p>
-    </div>
-  </div>
+            <p className="font-semibold">
+              {report.reportId ?? "CLX-DEMO"}
+            </p>
+          </div>
+        </div>
 
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div>
+            <p className="text-xs uppercase text-slate-500">
+              Evidence
+            </p>
 
-    <div>
-      <p className="text-xs uppercase text-slate-500">
-        Evidence
-      </p>
+            <p className="font-semibold">
+              {report.evidenceStrength ?? "High"}
+            </p>
+          </div>
 
-      <p className="font-semibold">
-        {report.evidenceStrength ?? "High"}
-      </p>
-    </div>
+          <div>
+            <p className="text-xs uppercase text-slate-500">
+              Knowledge Base
+            </p>
 
-    <div>
-      <p className="text-xs uppercase text-slate-500">
-        Knowledge Base
-      </p>
+            <p className="font-semibold">
+              {report.knowledgeBaseVersion ?? "v1.0"}
+            </p>
+          </div>
 
-      <p className="font-semibold">
-        {report.knowledgeBaseVersion ?? "v1.0"}
-      </p>
-    </div>
+          <div>
+            <p className="text-xs uppercase text-slate-500">
+              Engine
+            </p>
 
-    <div>
-      <p className="text-xs uppercase text-slate-500">
-        Engine
-      </p>
+            <p className="font-semibold">
+              {report.analysisVersion ?? "ClinixSafe AI"}
+            </p>
+          </div>
 
-      <p className="font-semibold">
-        {report.analysisVersion ?? "ClinixSafe AI"}
-      </p>
-    </div>
+          <div>
+            <p className="text-xs uppercase text-slate-500">
+              Generated
+            </p>
 
-    <div>
-      <p className="text-xs uppercase text-slate-500">
-        Generated
-      </p>
+            <p className="text-sm font-semibold">
+              {report.generatedAt
+                ? new Date(report.generatedAt).toLocaleString()
+                : "Just now"}
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <p className="font-semibold text-sm">
-        {report.generatedAt
-          ? new Date(report.generatedAt).toLocaleString()
-          : "Just now"}
-      </p>
-    </div>
-
-  </div>
-</div>
+      {/* Clinical Summary */}
       <div className="rounded-xl border border-blue-200 bg-blue-50 p-5">
-  <h2 className="text-sm font-semibold uppercase tracking-wide text-blue-700 mb-2">
-    Clinical Summary
-  </h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-700">
+          Clinical Summary
+        </h2>
 
-  <p className="text-gray-800 leading-relaxed">
-    {report.summary}
-  </p>
-</div>
+        <p className="leading-relaxed text-gray-800">
+          {report.summary}
+        </p>
+      </div>
 
+      {/* Recommendations */}
       {report.recommendations.length > 0 && (
         <div>
-          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-  Recommended Clinical Actions
-</h2>
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Recommended Clinical Actions
+          </h2>
 
           <ul className="space-y-2">
             {report.recommendations.map((rec, i) => (
@@ -119,9 +132,10 @@ export function SafetyResult({ report }: Props) {
                 key={i}
                 className="flex items-start gap-2 text-sm text-gray-800"
               >
-                <span className="text-green-500 mt-0.5 shrink-0 font-bold">
+                <span className="mt-0.5 shrink-0 font-bold text-green-500">
                   ✓
                 </span>
+
                 {rec}
               </li>
             ))}
@@ -129,9 +143,10 @@ export function SafetyResult({ report }: Props) {
         </div>
       )}
 
+      {/* Alternatives */}
       {hasAlternatives && (
         <div>
-          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
             Safer Alternatives
           </h2>
 
@@ -139,7 +154,7 @@ export function SafetyResult({ report }: Props) {
             {report.alternativeMedications!.map((alt, i) => (
               <span
                 key={i}
-                className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm border border-blue-200"
+                className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm text-blue-700"
               >
                 {alt}
               </span>
@@ -148,11 +163,12 @@ export function SafetyResult({ report }: Props) {
         </div>
       )}
 
+      {/* Warnings */}
       {hasWarnings && (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
-          <h2 className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-2">
-  ⚠ Critical Safety Alerts
-</h2>
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-amber-800">
+            ⚠ Critical Safety Alerts
+          </h2>
 
           <ul className="space-y-1">
             {report.warnings!.map((warning, i) => (
@@ -164,11 +180,12 @@ export function SafetyResult({ report }: Props) {
         </div>
       )}
 
+      {/* Communication Drafts */}
       {hasDrafts && (
         <div>
-         <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-  Clinical Communication Templates
-</h2>
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Clinical Communication Templates
+          </h2>
 
           <div className="space-y-3">
             {report.communicationDrafts!.map((draft, i) => (
@@ -176,7 +193,7 @@ export function SafetyResult({ report }: Props) {
                 key={`${draft.type}-${i}`}
                 className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
               >
-                <div className="flex items-start justify-between gap-3 mb-2">
+                <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
                       {draftLabel(draft.type)}
@@ -194,7 +211,7 @@ export function SafetyResult({ report }: Props) {
                   )}
                 </div>
 
-                <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                <p className="whitespace-pre-line text-sm leading-relaxed text-gray-700">
                   {draft.content}
                 </p>
               </div>
@@ -203,9 +220,10 @@ export function SafetyResult({ report }: Props) {
         </div>
       )}
 
+      {/* Evidence */}
       {hasEvidence && (
         <div>
-          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
             Clinical Evidence & References
           </h2>
 
