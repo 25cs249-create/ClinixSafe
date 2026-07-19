@@ -3,6 +3,8 @@
 
 ClinixSafe is a clinical safety assistant that helps healthcare professionals verify medication combinations, surface evidence, and generate clinician-ready communication drafts. It is designed for Indian pharmacies, clinics, primary health centres, telemedicine workflows, and small hospitals where polypharmacy and high patient volume make medication safety checks critical.
 
+ClinixSafe is a research prototype created for the Build in AI for India hackathon. It is intended solely for demonstration and educational purposes and must not be used for real clinical decision-making.
+
 > **Prototype · Not for clinical use**
 
 ---
@@ -100,6 +102,8 @@ Evidence Trace
 Communication Drafts
   ↓
 PDF Export
+```
+
 
 ## Workflow
 
@@ -284,9 +288,18 @@ ClinixSafe returns
 
 ![Evidence](docs/screenshots/evidence-trace.png)
 
+## Clinical Summary
+
+![Summary](docs/screenshots/clinical-summary.png)
+
+## Communication Drafts
+
+![Communication](docs/screenshots/communication-drafts.png)
+
 ## PDF Export
 
 ![PDF](docs/screenshots/pdf-export.png)
+
 
 # Local Development
 
