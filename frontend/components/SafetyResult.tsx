@@ -28,16 +28,90 @@ export function SafetyResult({ report }: Props) {
   return (
     <div className="space-y-5">
       <RiskBadge riskLevel={report.riskLevel} size="lg" />
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+  <div className="flex items-center justify-between mb-4">
+    <div>
+      <h2 className="text-lg font-bold text-slate-900">
+        Clinical Safety Assessment
+      </h2>
 
-      <p className="text-sm text-gray-800 leading-relaxed">
-        {report.summary}
+      <p className="text-sm text-slate-500">
+        AI Medication Safety Verification Report
       </p>
+    </div>
+
+    <div className="text-right">
+      <p className="text-xs text-slate-500 uppercase">
+        Report ID
+      </p>
+
+      <p className="font-semibold">
+        {report.reportId ?? "CLX-DEMO"}
+      </p>
+    </div>
+  </div>
+
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    <div>
+      <p className="text-xs uppercase text-slate-500">
+        Evidence
+      </p>
+
+      <p className="font-semibold">
+        {report.evidenceStrength ?? "High"}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-xs uppercase text-slate-500">
+        Knowledge Base
+      </p>
+
+      <p className="font-semibold">
+        {report.knowledgeBaseVersion ?? "v1.0"}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-xs uppercase text-slate-500">
+        Engine
+      </p>
+
+      <p className="font-semibold">
+        {report.analysisVersion ?? "ClinixSafe AI"}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-xs uppercase text-slate-500">
+        Generated
+      </p>
+
+      <p className="font-semibold text-sm">
+        {report.generatedAt
+          ? new Date(report.generatedAt).toLocaleString()
+          : "Just now"}
+      </p>
+    </div>
+
+  </div>
+</div>
+      <div className="rounded-xl border border-blue-200 bg-blue-50 p-5">
+  <h2 className="text-sm font-semibold uppercase tracking-wide text-blue-700 mb-2">
+    Clinical Summary
+  </h2>
+
+  <p className="text-gray-800 leading-relaxed">
+    {report.summary}
+  </p>
+</div>
 
       {report.recommendations.length > 0 && (
         <div>
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-            Recommendations
-          </h2>
+  Recommended Clinical Actions
+</h2>
 
           <ul className="space-y-2">
             {report.recommendations.map((rec, i) => (
@@ -58,7 +132,7 @@ export function SafetyResult({ report }: Props) {
       {hasAlternatives && (
         <div>
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-            Consider Instead
+            Safer Alternatives
           </h2>
 
           <div className="flex flex-wrap gap-2">
@@ -77,8 +151,8 @@ export function SafetyResult({ report }: Props) {
       {hasWarnings && (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
           <h2 className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-2">
-            ⚠ Warnings
-          </h2>
+  ⚠ Critical Safety Alerts
+</h2>
 
           <ul className="space-y-1">
             {report.warnings!.map((warning, i) => (
@@ -92,9 +166,9 @@ export function SafetyResult({ report }: Props) {
 
       {hasDrafts && (
         <div>
-          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-            Communication Drafts
-          </h2>
+         <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+  Clinical Communication Templates
+</h2>
 
           <div className="space-y-3">
             {report.communicationDrafts!.map((draft, i) => (
@@ -132,7 +206,7 @@ export function SafetyResult({ report }: Props) {
       {hasEvidence && (
         <div>
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-            Evidence Trace
+            Clinical Evidence & References
           </h2>
 
           <div className="space-y-3">
